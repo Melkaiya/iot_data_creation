@@ -184,7 +184,7 @@ def fnSensorDataUpdate(db_file, table_name, country,batch_num):
                 
                         #update data for sensors in the given country
                         cursor.execute(f"UPDATE {table_name} SET new_reading={new_reading}, last_reading={last_reading}, pulseCounter={new_reading}, temperature={new_temp}, RSSI={random_RSSI}, battery={battery} WHERE name='{sensorName}'")
-                        print(f"Data for sensor {sensorName} updated successfully")
+                        #print(f"Data for sensor {sensorName} updated successfully")
                         logging.info(f"Data for sensor {sensorName} updated successfully")
                         conn.commit()
                         
@@ -230,7 +230,7 @@ def fnSensorDataUpdate(db_file, table_name, country,batch_num):
                 
                         #update data for sensors in the given country
                         cursor.execute(f"UPDATE {table_name} SET new_reading={new_reading}, last_reading={last_reading}, pulseCounter={new_reading}, temperature={new_temp}, RSSI={random_RSSI}, battery={battery} WHERE name='{sensorName}'")
-                        print(f"Data for sensor {sensorName} updated successfully")
+                        #print(f"Data for sensor {sensorName} updated successfully")
                         logging.info(f"Data for sensor {sensorName} updated successfully")
                         conn.commit()
                         
@@ -245,10 +245,9 @@ def fnSensorDataUpdate(db_file, table_name, country,batch_num):
 # START CODE EXECUTION
 #############################
 fnCreateDB_WaterSensors('virtual_sensors.db', 'virtual_water_sensors')
-fnPushCSVtoSQL('waterSensors.csv','virtual_sensors.db', 'virtual_water_sensors')
-fnPrint_Database('virtual_sensors.db', 'virtual_water_sensors')
+#fnPushCSVtoSQL('waterSensors.csv','virtual_sensors.db', 'virtual_water_sensors')
+#fnPrint_Database('virtual_sensors.db', 'virtual_water_sensors')
 
-'''
 with concurrent.futures.ThreadPoolExecutor() as executor:
     # Submit all the functions to the executor
     executor.submit(fnSensorDataUpdate, 'virtual_sensors.db', 'virtual_water_sensors', 'Colombia', 1)
@@ -271,7 +270,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.submit(fnSensorDataUpdate, 'virtual_sensors.db', 'virtual_water_sensors', 'USA', 3)
     executor.submit(fnSensorDataUpdate, 'virtual_sensors.db', 'virtual_water_sensors', 'USA', 4)
     executor.submit(fnSensorDataUpdate, 'virtual_sensors.db', 'virtual_water_sensors', 'USA', 5)
-'''
+
 end_time = time.time()
 
 print("############################################################")
